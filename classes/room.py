@@ -4,7 +4,7 @@ class Room:
         self.genre = genre
         self.capacity = capacity
         self.guests = []
-        self.songs = []
+        self.playlist = []
         self.entry_fee = 10.00
 
     def check_in(self, guest):
@@ -14,7 +14,7 @@ class Room:
         self.guests.remove(guest)
 
     def add_song(self, song):
-        self.songs.append(song)
+        self.playlist.append(song)
 
     def entry(self, guest):
         if len(self.guests) <= self.capacity and guest.wallet >= self.entry_fee:
@@ -24,4 +24,10 @@ class Room:
             return "Card declined"
         else: 
             return "Room is full"
+
+    def playlist_reaction(self, guest):
+        if  guest.fav_song in self.playlist:
+            return "Wohoo!"
+        else: 
+            return "Oh no, Oh no"
         
