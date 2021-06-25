@@ -2,9 +2,10 @@ class Room:
     def __init__(self, genre, capacity):
         
         self.genre = genre
-        self.capacity = 4
+        self.capacity = capacity
         self.guests = []
         self.songs = []
+        self.entry_fee = 10.00
 
     def check_in(self, guest):
         self.guests.append(guest)
@@ -14,3 +15,13 @@ class Room:
 
     def add_song(self, song):
         self.songs.append(song)
+
+    def entry(self, guest):
+        if len(self.guests) <= self.capacity and guest.wallet >= self.entry_fee:
+            self.check_in(guest)
+            return "Welcome to Karaoke"
+        elif len(self.guests) <= self.capacity and guest.wallet < self.entry_fee:
+            return "Card declined"
+        else: 
+            return "Room is full"
+        
